@@ -70,7 +70,6 @@ class TicTacToe
 
       def won?
             WIN_COMBINATIONS.find { |win_combo|
-            winning_combo = win_combo
             win_index_1 = win_combo[0]
             win_index_2 = win_combo[1]
             win_index_3 = win_combo[2]
