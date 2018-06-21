@@ -4,7 +4,7 @@ class TicTacToe
     @board = board || Array.new(9, " ")
   end
 
-  
+
   @@WIN_COMBINATIONS = [
       [0,1,2],
       [3,4,5],
@@ -16,7 +16,7 @@ class TicTacToe
       [2,4,6]
     ]
 
-    
+
       def display_board
         puts " #{@board[0]} | #{@board[1]} | #{@board[2]} "
         puts "-----------"
@@ -92,11 +92,11 @@ class TicTacToe
       end
 
       def over?
-        won?(@board) || draw?(@board) || full?(2board)
+        @board.won? || @board.draw? || @board.full?
       end
 
       def winner(board)
-        if @board.won? 
+        if @board.won?
           @board.won?[0]
         end
       end
@@ -111,6 +111,6 @@ class TicTacToe
           puts "Cat's Game!"
       end
     end
-  
+
 
 end
