@@ -36,19 +36,19 @@ class TicTacToe
         (@board[index] == "X" || @board[index] == "O")
       end
 
-      def valid_move?(board,index)
-        !(position_taken?(@board,index)) && index.between?(0,8)
+      def valid_move?(index)
+        !(@board.position_taken?(index)) && index.between?(0,8)
       end
 
-      def turn(board)
+      def turn
         puts "Please enter 1-9:"
         input=gets.strip
         index=input_to_index(input)
-        current_player = current_player(@board)
-        if valid_move?(board,index)
-          move(board,index,current_player)
+        current_player = @board.current_player
+        if @board.valid_move?(index)
+          @board.move(index,current_player)
           @board.display_board
-        else turn(board)
+        else @board.turn
         end
       end
 
@@ -68,16 +68,16 @@ class TicTacToe
       current_player
       end
 
-      def won?(board)
+      def won?
             WIN_COMBINATIONS.find { |win_combo|
             winning_combo = win_combo
             win_index_1 = win_combo[0]
             win_index_2 = win_combo[1]
             win_index_3 = win_combo[2]
 
-            position_1 = board[win_index_1]
-            position_2 = board[win_index_2]
-            position_3 = board[win_index_3]
+            position_1 = @board[win_index_1]
+            position_2 = @board[win_index_2]
+            position_3 = @board[win_index_3]
 
             (position_1 == "X" && position_2 == "X" && position_3 == "X") || (position_1 == "O" && position_2 == "O" && position_3 == "O")}
       end
@@ -87,7 +87,7 @@ class TicTacToe
       end
 
       def draw?
-        !won?(@board) && full?(@board)
+        !@board.won? && @board.full?
       end
 
       def over?
